@@ -1,0 +1,64 @@
+<div class="auth-container">
+  @if (mode === 'login') {
+    <h2>Login</h2>
+  }
+  @if (mode === 'register') {
+    <h2>Register</h2>
+  }
+  @if (mode === 'forgot') {
+    <h2>{{ !token ? 'Forgot Password' : 'Reset Password' }}</h2>
+  }
+
+  @if (error) {
+    <div class="error" style="color: red; margin-bottom: 8px;">
+      {{ error }}
+    </div>
+  }
+
+  @if (message) {
+    <div class="message" style="color: green; margin-bottom: 8px;">
+      {{ message }}
+    </div>
+  }
+
+  <form (ngSubmit)="submit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" [(ngModel)]="email" name="email" required>
+    </mat-form-field>
+
+    @if (mode === 'login' || mode === 'register') {
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" [(ngModel)]="password" name="password" required>
+      </mat-form-field>
+    }
+
+    @if (mode === 'forgot' && token) {
+      <mat-form-field appearance="fill">
+        <mat-label>Reset Token</mat-label>
+        <input matInput type="text" [(ngModel)]="token" name="token">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>New Password</mat-label>
+        <input matInput type="password" [(ngModel)]="newPassword" name="newPassword" required>
+      </mat-form-field>
+    }
+
+    <button mat-raised-button color="primary" type="submit">
+      {{ mode === 'login' ? 'Login' : (mode === 'register' ? 'Register' : (!token ? 'Send Reset Token' : 'Reset Password')) }}
+    </button>
+  </form>
+
+  <div class="mode-switch" style="margin-top: 16px;">
+    @if (mode !== 'login') {
+      <button mat-button type="button" (click)="switchMode('login')">Switch to Login</button>
+    }
+    @if (mode !== 'register') {
+      <button mat-button type="button" (click)="switchMode('register')">Switch to Register</button>
+    }
+    @if (mode !== 'forgot') {
+      <button mat-button type="button" (click)="switchMode('forgot')">Forgot Password?</button>
+    }
+  </div>
+</div>

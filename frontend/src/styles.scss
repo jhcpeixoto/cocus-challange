@@ -1,0 +1,122 @@
+/* Light theme defaults */
+:root {
+  --background-color: #fafafa;
+  --text-color: #212121;
+  --toolbar-background: #ffffff;
+  --toolbar-text: #212121;
+  --card-background: #ffffff;
+  --card-text: #212121;
+  --table-background: #ffffff;
+  --table-text: #212121;
+  --input-background: #ffffff;
+  --input-text: #212121;
+  --button-background: #ffffff;
+  --button-text: #212121;
+}
+
+/* Global base styles */
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark theme overrides */
+.dark-theme {
+  --background-color: #000000;
+  --text-color: #ffffff;
+  --toolbar-background: #000000;
+  --toolbar-text: #ffffff;
+  --card-background: #000000;
+  --card-text: #ffffff;
+  --table-background: #121212;
+  --table-text: #ffffff;
+  --input-background: #121212;
+  --input-text: #ffffff;
+  --button-background: #1e1e1e;
+  --button-text: #ffffff;
+}
+
+/* Apply base theme colors */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Toolbar */
+.mat-toolbar, .mat-mdc-toolbar {
+  background-color: var(--toolbar-background) !important;
+  color: var(--toolbar-text) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Cards */
+.card {
+  background-color: var(--card-background) !important;
+  color: var(--card-text) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Tables */
+.mat-table, table, .mat-mdc-table {
+  background-color: var(--table-background) !important;
+  color: var(--table-text) !important;
+}
+
+/* Table header cells */
+.mat-header-cell, th, .mat-mdc-header-cell {
+  background-color: var(--table-background) !important;
+  color: var(--table-text) !important;
+}
+
+/* Ensure table cell text is updated */
+.dark-theme .mat-cell,
+.dark-theme .mat-mdc-cell,
+.dark-theme .mat-header-cell,
+.dark-theme .mat-mdc-header-cell,
+.dark-theme th,
+.dark-theme td {
+  color: var(--table-text) !important;
+}
+
+.mat-mdc-paginator-outer-container {
+  background-color: var(--table-background) !important;
+  color: var(--table-text) !important;
+}
+
+
+/* Mat-select (dropdown) styling */
+.mat-select-trigger,
+.mat-select-panel,
+.mat-mdc-select-panel{
+  background-color: var(--input-background) !important;
+  color: var(--input-text) !important;
+}
+
+.mat-mdc-select-value,
+.mat-mdc-option {
+  color: var(--input-text) !important;
+}
+
+/* Buttons */
+button,
+.mat-button,
+.mat-raised-button,
+.mat-stroked-button,
+.mat-flat-button {
+  background-color: var(--button-background) !important;
+  color: var(--button-text) !important;
+}
+
+
+/* Form fields */
+.mat-form-field {
+  background-color: var(--input-background) !important;
+  color: var(--input-text) !important;
+}

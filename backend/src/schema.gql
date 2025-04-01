@@ -1,0 +1,65 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input ForgotPasswordInput {
+  email: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  deposit(input: TransactionInput!): Float!
+  forgotPassword(input: ForgotPasswordInput!): String!
+  login(input: LoginInput!): TokenResponse!
+  logout: Boolean!
+  refresh: TokenResponse!
+  register(input: RegisterInput!): TokenResponse!
+  resetPassword(input: ResetPasswordInput!): Boolean!
+  withdraw(input: TransactionInput!): Float!
+}
+
+type Query {
+  getBalance: Float!
+  getTransactions(page: Float = 0, pageSize: Float = 10, type: String = "All"): TransactionPageDto!
+}
+
+input RegisterInput {
+  email: String!
+  password: String!
+}
+
+input ResetPasswordInput {
+  newPassword: String!
+  passwordToken: String!
+}
+
+type TokenResponse {
+  accessToken: String!
+  refreshToken: String!
+}
+
+type Transaction {
+  amount: Float!
+  timestamp: DateTime!
+  type: String!
+  updatedBalance: Float!
+  userId: String!
+}
+
+input TransactionInput {
+  amount: Float!
+}
+
+type TransactionPageDto {
+  totalCount: Int!
+  transactions: [Transaction!]!
+}

@@ -1,0 +1,40 @@
+<mat-toolbar color="primary">
+  <span>Dashboard</span>
+  <span class="spacer"></span>
+  <button mat-button (click)="toggleDarkMode()">Toggle Dark Mode</button>
+  <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
+
+<div class="content" style="padding: 16px;">
+  <h2>Your Balance: {{ balance | number:'1.2-2' }}</h2>
+
+  @if (error) {
+    <div class="error" style="color: red; margin-bottom: 8px;">
+      {{ error }}
+    </div>
+  }
+
+  <mat-form-field appearance="fill">
+    <mat-label>Amount</mat-label>
+    <input matInput type="number" [(ngModel)]="amount">
+  </mat-form-field>
+
+  <div class="actions" style="display: flex; gap: 16px;">
+    <button mat-raised-button color="primary" (click)="deposit()" [disabled]="isLoading">
+      Deposit
+      @if (isLoading) {
+        <mat-progress-spinner mode="indeterminate" diameter="20"></mat-progress-spinner>
+      }
+    </button>
+    <button mat-raised-button color="warn" (click)="withdraw()" [disabled]="isLoading">
+      Withdraw
+      @if (isLoading) {
+        <mat-progress-spinner mode="indeterminate" diameter="20"></mat-progress-spinner>
+      }
+    </button>
+  </div>
+
+  <div class="history" style="margin-top: 16px;">
+    <button mat-button (click)="goToHistory()">View Transaction History</button>
+  </div>
+</div>

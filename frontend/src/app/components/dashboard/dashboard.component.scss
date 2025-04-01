@@ -1,0 +1,31 @@
+.dashboard-container {
+  padding: 20px;
+}
+
+mat-toolbar {
+  margin-bottom: 20px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.transaction-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+mat-form-field {
+  flex: 1;
+}
+
+.error {
+  color: red;
+  margin: 20px 0
+}

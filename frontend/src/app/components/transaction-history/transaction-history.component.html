@@ -1,0 +1,59 @@
+<div class="history-container">
+  <mat-toolbar color="primary">
+    <span>Transaction History</span>
+    <span class="spacer"></span>
+    <button mat-button (click)="goBack()">Back to Dashboard</button>
+  </mat-toolbar>
+
+  <div class="content">
+    <!-- Filter select -->
+    <mat-form-field appearance="outline">
+      <mat-label>Transaction Type</mat-label>
+      <mat-select [(value)]="filterType" (selectionChange)="onFilterChange($event.value)">
+        <mat-option value="All">All</mat-option>
+        <mat-option value="Deposit">Deposit</mat-option>
+        <mat-option value="Withdrawal">Withdrawal</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    @if (error) {
+      <div class="error">
+        {{ error }}
+      </div>
+    }
+
+    <!-- Transactions Table -->
+    <table mat-table [dataSource]="transactions" class="mat-elevation-z8">
+      <!-- Type Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let transaction">{{ transaction.type }}</td>
+      </ng-container>
+
+      <!-- Amount Column -->
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef>Amount</th>
+        <td mat-cell *matCellDef="let transaction">{{ transaction.amount | number:'1.2-2' }}</td>
+      </ng-container>
+
+      <!-- Timestamp Column -->
+      <ng-container matColumnDef="timestamp">
+        <th mat-header-cell *matHeaderCellDef>Timestamp</th>
+        <td mat-cell *matCellDef="let transaction">{{ transaction.timestamp | date:'medium' }}</td>
+      </ng-container>
+
+      <!-- Updated Balance Column -->
+      <ng-container matColumnDef="updatedBalance">
+        <th mat-header-cell *matHeaderCellDef>Updated Balance</th>
+        <td mat-cell *matCellDef="let transaction">{{ transaction.updatedBalance | number:'1.2-2' }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [length]="totalTransactions" [pageSize]="pageSize" [pageIndex]="pageIndex"
+                   [pageSizeOptions]="[5, 10, 25]" (page)="onPageChange($event)">
+    </mat-paginator>
+  </div>
+</div>
